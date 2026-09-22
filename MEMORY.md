@@ -1,4 +1,0 @@
-- [User Profile](user_profile.md) — Roberto Segura, data platform & ML engineer at Audiense, communicates in Spanish
-- [Audiense Platform Overview](project_audiense_platform.md) — Soyuz updaters, Trino Hubble/Cosmos, Vega API, Stasi entity resolution
-- [Blog: Two Models One AND](project_blog_embeddings_classifier.md) — Taxonomy classifier blog post, bi-encoder + cross-encoder intersection, 4 versions EN/ES
-- [Audio PoC nacar.ai](project_audio_poc.md) — Voice agent for clinical pre-screening, LiveKit+Deepgram+ElevenLabs, 1229 tests

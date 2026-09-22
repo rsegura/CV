@@ -1,0 +1,13 @@
+# Local working material; only the published website is tracked.
+.DS_Store
+__pycache__/
+*.pyc
+/MEMORY.md
+/certificate_links.json
+/project_*.md
+/user_profile.md
+/docs/
+/output/
+/tmp/
+/v1/
+/v2/
