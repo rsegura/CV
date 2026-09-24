@@ -1,125 +1,202 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Roberto Segura Sala — data platforms, applied AI and technical leadership. Experience, personal projects and ongoing learning."><title>Projects — Roberto Segura Sala</title><link rel="stylesheet" href="assets/style.css"></head><body>
-<a class="skip" href="#main">Skip to content</a><div class="site"><header class="site-header"><a class="wordmark" href="index.html" aria-label="Roberto Segura Sala, home">rs<span>.</span></a><nav aria-label="Main navigation"><a href="index.html">About</a><a href="experience.html">Experience</a><a href="projects.html" aria-current="page">Projects</a><a href="learning.html">Learning</a></nav><a class="download" href="assets/roberto-segura-cv.pdf" download>Download CV <span aria-hidden="true">↓</span></a></header>
-<main id="main"><header class="page-intro"><p class="eyebrow">Selected work</p><h1>Complex problems.<br><span class="muted">Concrete solutions.</span></h1><p class="lead">The scale, decisions, and architecture behind my work. Professional systems at Audiense, followed by personal experiments.</p><div class="section-jumps"><a href="#professional">Professional work ↓</a><a href="#personal">Personal projects ↓</a></div></header><section id="professional"><div class="section-heading"><div><p class="eyebrow">Audiense · 2021–present</p><h2>Professional work</h2></div><span class="section-count">07 projects</span></div><div class="projects-list"><article class="project" id="projects-1"><p class="eyebrow">Data Lake &amp; Streaming</p><h3>Real-time Profile Enrichment</h3><p class="project-summary">Built and operated streaming enrichment over terabyte-scale Apache Iceberg tables, coordinating dozens of real-time consumers to keep audience profile attributes and social relationships up to date.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Created and maintained terabyte-scale Iceberg tables fed by streaming services. Led the migration of social relationship data to Iceberg, adapting schemas and coordinating changes with dependent consumers. Completed the move to real-time enrichment across the platform.</p>
-          <p>For large batches of geolocation lookups, evaluated whether direct data lake queries could replace indexed database access. Identified scheduled Spark processing as a better fit for this access pattern.</p>
-          <div class="tag-row">
-            <span class="tag">Apache Iceberg</span>
-            <span class="tag">Parquet</span>
-            <span class="tag">Kafka</span>
-            <span class="tag">Redpanda</span>
-            <span class="tag">AWS ECS</span>
-            <span class="tag">Spark</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-2"><p class="eyebrow">Query Engine &amp; Performance</p><h3>Faster, More Reliable Data Queries</h3><p class="project-summary">Segmentation and reporting queries needed to run faster and fail less often. Optimized Trino query execution and introduced retries, reducing execution time, network traffic, CPU usage, and the query failure rate.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Introduced table statistics to help the engine choose more efficient ways to join datasets, reducing the amount of data transferred between workers and the CPU needed to process it. Analyzed query patterns and storage access to identify bottlenecks.</p>
-          <p>Added a retry layer so failed queries could be attempted again, improving reliability for the services that depend on their results.</p>
-          <div class="tag-row">
-            <span class="tag">Trino</span>
-            <span class="tag">Iceberg</span>
-            <span class="tag">S3</span>
-            <span class="tag secondary">Query optimization</span>
-            <span class="tag secondary">Performance analysis</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-3"><p class="eyebrow">Machine Learning &amp; NLP</p><h3>Interest Classification with Applied ML</h3><p class="project-summary">Built a production interest classification pipeline spanning LoRA fine-tuning, reranking, and model serving on Kubernetes with vLLM. Integrated inference with a real-time enrichment consumer, reaching more profiles and improving the correctness of assigned interests across 444 categories.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Fine-tuned an embedding model with LoRA to retrieve candidate interests, then applied a cross-encoder to rerank them. Used agreement between the models to address confident but incorrect predictions. Deployed the inference service on Kubernetes with vLLM and connected it to a streaming consumer that enriches profiles with inferred interests.</p>
-          <p>Also used Qwen models served through vLLM for near-real-time enrichment, integrating language model inference into the data processing architecture.</p>
-          <p>Evaluation showed F1 improving from 0.255 to 0.390 after fine-tuning, and strict precision increasing from 36% to 52% with model agreement. These measure distinct improvements in the classification pipeline.</p>
-          <div class="tag-row">
-            <span class="tag">Sentence Transformers</span>
-            <span class="tag">LoRA / PEFT</span>
-            <span class="tag">Kubernetes</span>
-            <span class="tag">vLLM</span>
-            <span class="tag">Qwen</span>
-            <span class="tag">Cross-Encoders</span>
-            <span class="tag secondary">Contrastive learning</span>
-            <span class="tag secondary">Information Retrieval</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-4"><p class="eyebrow">Query Engine &amp; Performance</p><h3>VEGA: Shared Access to Audience Data</h3><p class="project-summary">Designed an asynchronous query platform over the data lake, unifying Athena and Trino behind an API with queue-based decoupling, execution traceability, and retries. Gave product teams shared access to data without having to manage each query engine directly.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Decoupled query submission from execution through queues, allowing clients to submit long-running jobs and retrieve results asynchronously. Implemented execution traceability, retries, and Redis-based rate limiting to track queries, recover from failures, and control demand. Added a data catalog, query examples, and a query builder to support adoption.</p>
-          <p>Worked with product teams to integrate the platform into their workflows. Adoption reduced costs and the number of systems they needed, and enabled new data-driven product verticals previously constrained by scale.</p>
-          <div class="tag-row">
-            <span class="tag">FastAPI</span>
-            <span class="tag">Athena</span>
-            <span class="tag">Trino</span>
-            <span class="tag">Redis</span>
-            <span class="tag">Redpanda</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-5"><p class="eyebrow">Machine Learning &amp; NLP</p><h3>Consistent Entity Identification</h3><p class="project-summary">Social media mentions need to be linked to the entities they refer to before they can reliably enrich audience data. Built a system that resolves TikTok mentions to shared Wikidata identities.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Combined entity matching with a review process to catch incorrect matches before other services use them. Published complete, versioned datasets to Iceberg so consumers can keep using a consistent version while the next update is prepared.</p>
-          <div class="tag-row">
-            <span class="tag">Wikidata</span>
-            <span class="tag">NER</span>
-            <span class="tag">Apache Iceberg</span>
-            <span class="tag">CronJob</span>
-            <span class="tag secondary">Entity resolution</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-6"><p class="eyebrow">Machine Learning &amp; NLP</p><h3>Multilingual Profile Text Processing</h3><p class="project-summary">Social media bios mix languages, abbreviations, emojis, and hashtags. Built a pipeline that extracts and normalizes useful phrases for interest classification across nine languages.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Used spaCy language models to identify meaningful phrases, filter noise, and remove duplicates. The resulting structured text feeds the interest classifier, connecting unstructured profile descriptions with the enrichment pipeline.</p>
-          <div class="tag-row">
-            <span class="tag">spaCy</span>
-            <span class="tag">Python</span>
-            <span class="tag secondary">Multilingual NLP</span>
-          </div>
-        </div></details></article>
-<article class="project" id="projects-7"><p class="eyebrow">Product &amp; Analytics</p><h3>Influencer Recommendations from Interests</h3><p class="project-summary">Limited social relationship data made it difficult to identify relevant influencers. Developed recommendations based on shared interests to support cases where direct connection data was sparse.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Used Watson NLU interest categories to construct representative audiences, then matched them against influencer follower bases. This provided an alternative route to recommendations when direct social graph information was insufficient.</p>
-          <div class="tag-row">
-            <span class="tag">Watson NLU</span>
-            <span class="tag secondary">Recommendation systems</span>
-            <span class="tag secondary">Proxy audiences</span>
-          </div>
-        </div></details></article></div></section><section id="personal"><div class="section-heading"><div><p class="eyebrow">Learning through experimentation</p><h2>Personal projects &amp; research</h2></div><span class="section-count">04 explorations</span></div><p class="section-intro">Self-directed learning projects, separate from my professional work.</p><div class="projects-list"><article class="project" id="personal-1"><p class="eyebrow">Personal project · Conversational Tools &amp; MCP</p><h3>Hermes Expense Tracker</h3><p class="project-summary">Pet project exploring shared household expense tracking through conversation. Each member uses a personal assistant on Hermes Agent, while all assistants work with the same expense database.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Built a Python FastMCP server that owns business rules and persistence in SQLite. Hermes profiles handle conversation through Telegram or the CLI and invoke domain tools, separating language model interaction from expense calculations and data access.</p>
-          <p>Implemented per-person expense allocations, shared projects with membership-based visibility, budgets, recurring expense templates, and reports and charts. Added English and Spanish support and cross-platform installation tooling to make the project reusable.</p>
-          <div class="tag-row">
-            <span class="tag">Hermes Agent</span>
-            <span class="tag">Python</span>
-            <span class="tag">FastMCP</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Telegram</span>
-            <span class="tag secondary">Domain tools</span>
-          </div>
-        </div></details></article>
-<article class="project" id="personal-2"><p class="eyebrow">Voice &amp; AI Agents</p><h3>Voice Agent Architecture Prototype</h3><p class="project-summary">Pet project built to understand voice agents through hands-on experimentation. Uses a simulated clinical pre-screening interview as a concrete scenario for exploring real-time conversation orchestration.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Integrated a streaming STT → LLM → TTS pipeline: Deepgram converts speech to text, a language model orchestrated through OpenRouter handles the dialogue, and ElevenLabs generates spoken responses, connected through LiveKit/WebRTC. The agent conducts structured interviews and assesses answers against predefined inclusion and exclusion criteria.</p>
-          <p>Implemented explicit conversation state transitions and SQLite WAL persistence for crash recovery, backed by automated tests. The focus is learning how voice, model orchestration, and durable state fit together in an experimental prototype.</p>
-          <div class="tag-row">
-            <span class="tag">LiveKit</span>
-            <span class="tag">Deepgram</span>
-            <span class="tag">ElevenLabs</span>
-            <span class="tag">OpenRouter</span>
-            <span class="tag">SQLite WAL</span>
-          </div>
-        </div></details></article>
-<article class="project" id="personal-3"><p class="eyebrow">Personal exploration · Voice &amp; Agent Harnesses</p><h3>Math Tutor: Bounded Voice Agent</h3><p class="project-summary">Personal proof of concept exploring how an LLM can support a natural tutoring conversation while deterministic software controls mathematical correctness and progression.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Built a Spanish-speaking voice tutor with LiveKit and an STT → LLM → TTS pipeline. The model proposes interpretations and pedagogical actions; a harness validates them before domain code can change learning state or release a response.</p>
-          <p>Separated educational rules from model and voice providers, with SQLite persistence and offline evaluations of the core workflow. The current scope is a narrow primary-math prototype for engineering experimentation, not a deployed educational product.</p>
-          <div class="tag-row">
-            <span class="tag">Python</span>
-            <span class="tag">LiveKit</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">SQLite</span>
-            <span class="tag secondary">Agent harnesses</span>
-            <span class="tag secondary">Domain modeling</span>
-            <span class="tag secondary">Offline evaluation</span>
-          </div>
-        </div></details></article>
-<article class="project" id="personal-4"><p class="eyebrow">Personal research · Knowledge Management</p><h3>AI Research Wiki</h3><p class="project-summary">Personal Obsidian vault developed with the help of Hermes Agent and organized as an LLM wiki, connecting research on agents, voice architectures, context engineering, and evaluation to support ongoing learning.</p><details><summary>Architecture &amp; approach <span aria-hidden="true">+</span></summary><div class="project-detail">
-          <p>Organized source articles and papers alongside linked concept notes, technology profiles, architecture comparisons, and research syntheses. Topics include agent harnesses, tool use, RAG, observability, and conversational turn-taking.</p>
-          <p>The vault provides a structured reference for exploring design alternatives and connecting ideas across personal experiments.</p>
-          <div class="tag-row">
-            <span class="tag">Obsidian</span>
-            <span class="tag">Hermes Agent</span>
-            <span class="tag">Markdown</span>
-            <span class="tag secondary">LLM wiki</span>
-            <span class="tag secondary">Agent research</span>
-            <span class="tag secondary">Knowledge synthesis</span>
-          </div>
-        </div></details></article></div></section></main><footer><div><a class="footer-name" href="index.html">Roberto Segura Sala</a><p>Madrid · Building, learning, sharing.</p></div><div class="socials"><a href="https://www.linkedin.com/in/robersegsal/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/rsegura" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://x.com/Rober_Segura" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a></div><span class="copyright">© 2026</span></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Projects by Roberto Segura Sala: real-time enrichment on Iceberg, Trino performance, interest classification with LoRA and reranking, the VEGA query API, and personal voice-agent prototypes.">
+<meta property="og:title" content="Projects — Roberto Segura Sala">
+<meta property="og:description" content="Real-time enrichment on Iceberg, Trino performance, interest classification with LoRA and reranking, the VEGA query API, and personal voice-agent prototypes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rsegura.github.io/CV/projects.html">
+<link rel="canonical" href="https://rsegura.github.io/CV/projects.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23202522'/%3E%3Ctext x='30' y='45' font-family='-apple-system,Segoe UI,Arial,sans-serif' font-weight='700' font-size='34' text-anchor='middle' fill='%23fff' letter-spacing='-2'%3Ers%3C/text%3E%3Ccircle cx='53' cy='42' r='4' fill='%2326765d'/%3E%3C/svg%3E">
+<title>Projects — Roberto Segura Sala</title>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Projects — Roberto Segura Sala", "url": "https://rsegura.github.io/CV/projects.html", "about": {"@id": "https://rsegura.github.io/CV/#me"}, "isPartOf": {"@type": "WebSite", "name": "Roberto Segura Sala", "url": "https://rsegura.github.io/CV/"}}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="site">
+<header class="site-header">
+<a class="wordmark" href="index.html" aria-label="Roberto Segura Sala, home">rs<span>.</span></a>
+<nav aria-label="Main navigation">
+<a href="index.html">About</a>
+<a href="experience.html">Experience</a>
+<a href="projects.html" aria-current="page">Projects</a>
+<a href="learning.html">Learning</a>
+</nav>
+<a class="download" href="assets/roberto-segura-cv.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+</header>
+<main id="main">
+<header class="page-intro">
+<p class="eyebrow">Projects</p>
+<h1>What I've built, and what it did.</h1>
+<p class="lead">Seven systems at Audiense, then four things I built on my own time to learn. Each one: the problem, what I did, what came out of it.</p>
+<div class="section-jumps">
+<a href="#professional">Audiense ↓</a>
+<a href="#personal">Personal ↓</a>
+</div>
+</header>
+
+<section id="professional">
+<div class="section-heading">
+<div>
+<p class="eyebrow">Audiense · 2021–present</p>
+<h2>Professional work</h2>
+</div>
+</div>
+<div class="projects-list">
+
+<article class="project" id="enrichment">
+<p class="eyebrow">Data lake &amp; streaming</p>
+<h3>Keeping a 15 TB lake current in real time</h3>
+<div class="project-body">
+<p>Audience profiles — their attributes and their social relationships — have to reflect new data as it arrives. Batch refreshes weren't keeping up, and the lake behind them is over 15 TB.</p>
+<p><strong>What I did.</strong> I created the Iceberg tables that streaming services now write to, and I maintain them. I led the migration of social-relationship data into Iceberg: schema changes were coordinated with every dependent consumer while they kept reading. I then completed the platform's move from batch to fully real-time enrichment. Along the way I tested whether large batches of geolocation lookups could hit the lake directly instead of an indexed database; they couldn't do it efficiently, so that path stayed on scheduled Spark jobs.</p>
+<p class="project-result"><strong>Result.</strong> More than 20 streaming consumers read and write the same Iceberg tables in real time, and enrichment no longer waits for a batch window.</p>
+</div>
+<div class="tag-row"><span class="tag">Apache Iceberg</span><span class="tag">Parquet</span><span class="tag">Kafka</span><span class="tag">Redpanda</span><span class="tag">AWS ECS</span><span class="tag">Spark</span></div>
+</article>
+
+<article class="project" id="trino">
+<p class="eyebrow">Query engine &amp; performance</p>
+<h3>Cutting Trino query time, network and failures</h3>
+<div class="project-body">
+<p>Audience reports run as a sequence of heavy Trino queries over the lake. They were slow, shuffled enormous amounts of data between workers, and failed often enough that the services depending on them had to handle it themselves.</p>
+<p><strong>What I did.</strong> I profiled query patterns and S3 access to see where the time went, then rewrote the worst steps and added Iceberg table statistics so Trino's cost-based optimizer picked better join orders — far less data shuffled between workers and far less CPU spent on it. One step wasn't expensive, just starved: I added a worker-allocation rule so it stopped waiting behind everything else. I also put a retry layer in front of the engine so transient failures stopped reaching callers.</p>
+<p class="project-result"><strong>Result</strong> (same query mix, ~3,500 completed report queries the week before and the week after)<strong>.</strong> Median query time down 28–51% per step and p90 down 42–60%. Internal network per query down 93%: five steps went from 15–117 GB each to under 0.05 GB. CPU per query halved overall, down 91% in the worst step. The starved step went from 301 s to 159 s at the median and 950 s to 235 s at p90 with the same CPU and bytes — pure parallelism. Failure rate from 2.2% in the worst week to under 0.2% sustained.</p>
+</div>
+<div class="tag-row"><span class="tag">Trino</span><span class="tag">Apache Iceberg</span><span class="tag">S3</span></div>
+</article>
+
+<article class="project" id="interests">
+<p class="eyebrow">Machine learning &amp; NLP</p>
+<h3>Interest classification: trusting agreement instead of a score</h3>
+<div class="project-body">
+<p>Given a profile's bio and recent posts, assign the few interests that describe it from a taxonomy of 444 categories. The first version embedded the text, compared it against the category embeddings and kept the closest ones above a cosine threshold. Aggregate metrics looked fine. Individual cases didn't: religious profiles in several languages landed in <em>primary education and k-12</em>, cricket looked like <em>rugby</em>, any holiday phrase triggered <em>honeymoons</em>. Some categories acted as attractors, and the model was often confident when it was wrong — raising the threshold didn't separate those errors from the good assignments.</p>
+<p><strong>Step one: adapt the embeddings.</strong> I fine-tuned the embedding model with LoRA on examples labelled against our own taxonomy, adding hard negatives (the categories the base model kept confusing) and a contrastive recipe (MultipleNegativesRankingLoss + Matryoshka loss). On a held-out, human-labelled test set, F1 went from 0.255 to 0.390 — a 53% relative gain, done on consumer hardware. Along the way we nearly shipped a checkpoint that scored 0.005 after reload because of an interaction between <code>load_best_model_at_end</code>, PEFT and adapter saving; since then a save isn't done until a clean reload reproduces the metric.</p>
+<p><strong>Step two: measure properly.</strong> Better F1 didn't remove the attractors. We hand-judged 504 production assignments, 84 per confidence band. <em>Strict precision</em> means a human, reading the original text, accepts the assigned category outright — no benefit of the doubt. Overall it was 46%. By band it went from 24% at cosine 0.50–0.55 to 79% above 0.80, so a high threshold would have been precise but would have left too few profiles classified.</p>
+<p><strong>Step three: a second opinion.</strong> I added a cross-encoder to rerank the bi-encoder's top-20 candidates, reading each profile–category pair together. A 30-entity pilot suggested a threshold on the reranker score would fix everything (79% strict precision). At 300 entities and 1,150 judgements it didn't hold: reranker scores of 0.95 for categories outside the bi-encoder's top-5 were right only 38% of the time, while scores of 0.05 for categories inside it were right 68% of the time. The useful signal wasn't either model's score. It was whether the two models agreed.</p>
+<p><strong>What shipped.</strong> A category survives only if it's in both the bi-encoder's top-5 and the reranker's top-5. No threshold on the cross-encoder score. If the intersection is empty, the profile is left unclassified rather than given a doubtful category. Inference runs on Kubernetes with vLLM and is wired to a streaming consumer, so profiles are enriched as they arrive; the same serving layer also runs Qwen models for other near-real-time LLM enrichment.</p>
+<figure class="project-figure"><img src="assets/interests-funnel.png" alt="Funnel: 444 categories, bi-encoder keeps top 20 candidates in about 3 ms, cross-encoder reranks to top 5 in about 400 ms, intersection leaves about 2 final categories" loading="lazy" width="1400" height="825"></figure>
+<p class="project-result"><strong>Result</strong> (300 entities, 1,150 human judgements)<strong>.</strong> Strict precision 36% → 52% (+44% relative); generous precision 58% → 71%. The price: ~1.5–2 categories per profile instead of ~3, and 20–30% of profiles with no output instead of ~20%. For audience segmentation that trade is right — a false positive contaminates a segment, an unclassified profile is easy to handle.</p>
+<p>The full story, with the failure cases and the numbers behind each decision, is going out on the Audiense engineering blog as <em>Two models, one AND</em>.</p>
+</div>
+<div class="tag-row"><span class="tag">Sentence Transformers</span><span class="tag">LoRA / PEFT</span><span class="tag">MNRL + Matryoshka</span><span class="tag">Cross-encoders</span><span class="tag">vLLM</span><span class="tag">Qwen</span><span class="tag">Kubernetes</span></div>
+</article>
+
+<article class="project" id="vega">
+<p class="eyebrow">Platform</p>
+<h3>VEGA: one way in to the data instead of a copy per team</h3>
+<div class="project-body">
+<p>Every product team that needed audience data kept its own copy: an RDS here, a Mongo there, each fed by its own ETL and Spark jobs pulling from the lake. Several versions of the same data, several pipelines to keep alive, and every team paying for the storage and the compute twice.</p>
+<p><strong>What I did.</strong> I designed VEGA, an asynchronous query platform on top of the Trino work above: a team submits an aggregation, gets an id, and fetches the result when it's ready. Queues decouple submission from execution; every execution is traceable and retried on failure; Redis-based rate limiting keeps demand under control. I added a data catalog, query examples and a query builder, then worked with each team on their integration so they could drop their copy.</p>
+<p class="project-result"><strong>Result.</strong> Teams read from the lake directly instead of maintaining local copies, so the ETLs and Spark jobs that populated them went away, along with the databases they filled. One source of truth, one place to fix a schema change, and product verticals that were previously blocked by data volume now run on VEGA.</p>
+</div>
+<div class="tag-row"><span class="tag">FastAPI</span><span class="tag">Trino</span><span class="tag">Athena</span><span class="tag">Redis</span><span class="tag">Redpanda</span></div>
+</article>
+
+<article class="project" id="entities">
+<p class="eyebrow">Machine learning &amp; NLP</p>
+<h3>Resolving TikTok mentions to Wikidata entities</h3>
+<div class="project-body">
+<p>A mention in a TikTok post has to be linked to a real-world entity before it can enrich anything.</p>
+<p><strong>What I did.</strong> I built a system that matches mentions to Wikidata identities, with a review step that catches wrong matches before other services consume them. It publishes complete, versioned datasets to Iceberg, so consumers keep reading a consistent version while the next one is being prepared.</p>
+</div>
+<div class="tag-row"><span class="tag">Wikidata</span><span class="tag">NER</span><span class="tag">Apache Iceberg</span><span class="tag">Kubernetes CronJob</span></div>
+</article>
+
+<article class="project" id="bios">
+<p class="eyebrow">Machine learning &amp; NLP</p>
+<h3>Extracting usable phrases from multilingual bios</h3>
+<div class="project-body">
+<p>Social media bios mix languages, abbreviations, emojis and hashtags. The interest classifier needs clean phrases.</p>
+<p><strong>What I did.</strong> I built a spaCy pipeline over nine languages that extracts meaningful phrases, filters noise and removes duplicates. Its output feeds the interest classifier above.</p>
+</div>
+<div class="tag-row"><span class="tag">spaCy</span><span class="tag">Python</span></div>
+</article>
+
+<article class="project" id="influencers">
+<p class="eyebrow">Product &amp; analytics</p>
+<h3>Influencer recommendations when the graph is sparse</h3>
+<div class="project-body">
+<p>With limited follower data, relevant influencers couldn't be ranked from the social graph alone.</p>
+<p><strong>What I did.</strong> I used Watson NLU interest categories to build a representative proxy audience, then matched it against influencers' follower bases.</p>
+<p class="project-result"><strong>Result.</strong> A working recommendation path for the cases where graph data alone wasn't enough.</p>
+</div>
+<div class="tag-row"><span class="tag">Watson NLU</span></div>
+</article>
+
+</div>
+</section>
+
+<section id="personal">
+<div class="section-heading">
+<div>
+<p class="eyebrow">Own time</p>
+<h2>Personal projects</h2>
+</div>
+</div>
+<p class="section-intro">Prototypes I built to understand something, not products. Scope is stated in each one.</p>
+<div class="projects-list">
+
+<article class="project" id="hermes">
+<p class="eyebrow">Agents &amp; MCP</p>
+<h3>Hermes Expense Tracker</h3>
+<div class="project-body">
+<p>Shared household expenses, tracked by talking to an assistant instead of filling in an app.</p>
+<p><strong>What I built.</strong> A Python FastMCP server that owns the business rules and the SQLite persistence. Each household member has a Hermes Agent profile, over Telegram or the CLI, that calls the server's domain tools — the language model handles the conversation and never the arithmetic. It supports per-person allocations, shared projects with membership-based visibility, budgets, recurring expense templates, and reports with charts, in English and Spanish, with installers for the platforms we use at home.</p>
+<p class="project-link"><a href="https://github.com/rsegura/hermes-expense-tracker" target="_blank" rel="noopener noreferrer">Code on GitHub <span aria-hidden="true">↗</span></a></p>
+</div>
+<div class="tag-row"><span class="tag">Hermes Agent</span><span class="tag">FastMCP</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Telegram</span></div>
+</article>
+
+<article class="project" id="voice">
+<p class="eyebrow">Voice agents</p>
+<h3>Voice agent prototype</h3>
+<div class="project-body">
+<p>I wanted to understand how voice agents actually work end to end. A simulated clinical pre-screening interview gave me a scenario with structure: questions, inclusion criteria, exclusion criteria.</p>
+<p><strong>What I built.</strong> A streaming pipeline — Deepgram for speech to text, a language model through OpenRouter for the dialogue, ElevenLabs for speech — connected over LiveKit/WebRTC. Conversation state moves through explicit transitions rather than living in the prompt, and it's persisted to SQLite in WAL mode so a crash mid-interview can be recovered. Automated tests cover the state machine.</p>
+<p class="project-link muted-note">Private repository.</p>
+</div>
+<div class="tag-row"><span class="tag">LiveKit</span><span class="tag">Deepgram</span><span class="tag">ElevenLabs</span><span class="tag">OpenRouter</span><span class="tag">SQLite</span></div>
+</article>
+
+<article class="project" id="tutor">
+<p class="eyebrow">Voice agents &amp; harnesses</p>
+<h3>Math tutor: a voice agent that can't be wrong about the math</h3>
+<div class="project-body">
+<p>Can a language model hold a natural tutoring conversation while deterministic code decides what's correct and what comes next?</p>
+<p><strong>What I built.</strong> A Spanish-speaking voice tutor on LiveKit, same STT → LLM → TTS shape as above. The model proposes an interpretation of what the student said and a pedagogical action; a harness validates both before any domain code changes the learning state or a response is released. The educational rules are separated from the model and voice providers, state lives in SQLite, and the core loop is evaluated offline.</p>
+<p>Scope: primary-school arithmetic, one student at a time. A prototype for engineering experiments, not a product.</p>
+<p class="project-link"><a href="https://github.com/rsegura/math_tutor" target="_blank" rel="noopener noreferrer">Code on GitHub <span aria-hidden="true">↗</span></a></p>
+</div>
+<div class="tag-row"><span class="tag">Python</span><span class="tag">LiveKit</span><span class="tag">FastAPI</span><span class="tag">SQLite</span></div>
+</article>
+
+<article class="project" id="wiki">
+<p class="eyebrow">Knowledge management</p>
+<h3>AI research wiki</h3>
+<div class="project-body">
+<p>An Obsidian vault I maintain with Hermes Agent, organised as an LLM wiki: source papers and articles sit next to linked concept notes, technology profiles and architecture comparisons. Current topics are agent harnesses, tool use, RAG, observability, and conversational turn-taking. The voice prototypes above started as notes here.</p>
+</div>
+<div class="tag-row"><span class="tag">Obsidian</span><span class="tag">Hermes Agent</span><span class="tag">Markdown</span></div>
+</article>
+
+</div>
+</section>
+</main>
+<footer>
+<div>
+<a class="footer-name" href="index.html">Roberto Segura Sala</a>
+</div>
+<div class="socials">
+<a href="https://www.linkedin.com/in/robersegsal/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+<a href="https://github.com/rsegura" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+<a href="https://x.com/Rober_Segura" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a>
+</div>
+<span class="copyright">© 2026</span>
+</footer>
+</div>
+</body>
+</html>

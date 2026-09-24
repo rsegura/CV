@@ -1,0 +1,14 @@
+# Roberto Segura Sala
+
+> From Cuenca, father of two. Engineer responsible for the data platform at Audiense. Apache Iceberg and Trino over a 15 TB+ lake with 20+ streaming consumers, real-time enrichment with Kafka/Redpanda, and applied ML on top: LoRA-tuned embeddings and cross-encoder reranking served with vLLM on Kubernetes. Engineer since 2011.
+
+Job title: Backend, Big Data & Real Time Engineer at Audiense (Jan 2021 – present).
+Contact and profiles: https://www.linkedin.com/in/robersegsal/ · https://github.com/rsegura · https://x.com/Rober_Segura
+
+## Pages
+
+- [About](https://rsegura.github.io/CV/): who I am and three selected problems.
+- [Experience](https://rsegura.github.io/CV/experience.html): timeline since 2011 and the stack I use in production.
+- [Projects](https://rsegura.github.io/CV/projects.html): seven systems at Audiense (real-time enrichment on Iceberg, Trino performance, interest classification with LoRA + reranking, the VEGA async query API, TikTok entity resolution, multilingual bio processing, influencer recommendations) and four personal prototypes (Hermes expense tracker over MCP, voice agents on LiveKit, a bounded math tutor, an AI research wiki).
+- [Learning](https://rsegura.github.io/CV/learning.html): reading, education and 26 linked certificates.
+- [CV (PDF, 2 pages)](https://rsegura.github.io/CV/assets/roberto-segura-cv.pdf)
